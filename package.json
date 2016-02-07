@@ -1,14 +1,14 @@
 {
-  "name": "grunt-travis-local",
-  "description": "Run your travis node matrix locally",
+  "name": "grunt-test-matrix",
+  "description": "Run a grunt command against your travis test matrix",
   "version": "1.0.0",
-  "main": "tasks/travisLocal.js",
+  "main": "tasks/testMatrix.js",
   "scripts": {
     "test": "grunt"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tandrewnichols/grunt-travis-local.git"
+    "url": "git://github.com/tandrewnichols/grunt-test-matrix.git"
   },
   "keywords": [
     "travis",
@@ -26,18 +26,20 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tandrewnichols/grunt-travis-local/issues"
+    "url": "https://github.com/tandrewnichols/grunt-test-matrix/issues"
   },
-  "homepage": "https://github.com/tandrewnichols/grunt-travis-local",
+  "homepage": "https://github.com/tandrewnichols/grunt-test-matrix",
   "config": {
     "blanket": {
       "pattern": [
-        "grunt-travis-local/tasks"
+        "grunt-test-matrix/tasks"
       ]
     }
   },
   "dependencies": {
-    "chalk": "^1.1.1"
+    "chalk": "^1.1.1",
+    "n-run": "^1.0.1",
+    "travis-yaml": "^1.0.0"
   },
   "devDependencies": {
     "coffee-script": "^1.10.0",

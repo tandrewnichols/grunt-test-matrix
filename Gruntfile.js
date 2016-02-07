@@ -6,7 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-travis-matrix');
-
+  grunt.loadTasks('./tasks');
 
   grunt.initConfig({
     clean: {
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       options: {
         reporter: 'spec',
         ui: 'mocha-given',
-        require: 'coffee-script/register'
+        require: ['coffee-script/register', 'should', 'should-sinon']
       },
       test: {
         src: ['test/helpers/**/*.coffee', 'test/**/*.coffee']
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
           reporter: 'mocha-lcov-reporter',
           ui: 'mocha-given',
           instrument: true,
-          require: 'coffee-script/register',
+          require: ['coffee-script/register', 'should', 'should-sinon'],
           output: 'coverage/coverage.lcov'
         },
         src: ['test/**/*.coffee'],
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'html-cov',
           ui: 'mocha-given',
-          require: 'coffee-script/register',
+          require: ['coffee-script/register', 'should', 'should-sinon'],
           output: 'coverage/coverage.html'
         },
         src: ['test/**/*.coffee']
@@ -79,6 +79,11 @@ module.exports = function(grunt) {
         options: {
           atBegin: true
         }
+      }
+    },
+    testMatrix: {
+      test: {
+        task: 'mocha'
       }
     }
   });
