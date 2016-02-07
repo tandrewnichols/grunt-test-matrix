@@ -20,6 +20,7 @@ module.exports = function(grunt) {
       var versions = travis.node_js.map(function(version) {
         return version.replace('iojs-v', '');
       });
+      versions = options.versions || versions;
       n.run(task, versions, options, done);
     });
   });
