@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-travis-matrix');
+  grunt.loadNpmTasks('grunt-exec');
   grunt.loadTasks('./tasks');
 
   grunt.initConfig({
@@ -24,16 +25,15 @@ module.exports = function(grunt) {
       },
       all: ['tasks/**/*.js']
     },
-    matrix: {
-      v4: 'codeclimate-test-reporter < coverage/lcov.info'
+    exec: {
+      codeclimate: 'codeclimate-test-reporter < coverage/coverage.lcov'
     },
-    travis: {
-      options: {
-        targets: {
-          test: '{{ version }}',
-          when: 'v4',
-          tasks: ['istanbul:unit', 'matrix:v4']
-        }
+    travisMatrix: {
+      v4: {
+        test: function() {
+          return /^v4/.test(process.version);
+        },
+        tasks: ['mochacov:lcov', 'exec:codeclimate']
       }
     },
     mochaTest: {
@@ -91,5 +91,5 @@ module.exports = function(grunt) {
   grunt.registerTask('mocha', ['mochaTest:test']);
   grunt.registerTask('default', ['jshint:all', 'mocha']);
   grunt.registerTask('coverage', ['mochacov:html']);
-  grunt.registerTask('ci', ['jshint:all', 'mocha', 'travis']);
+  grunt.registerTask('ci', ['jshint:all', 'mocha', 'travisMatrix']);
 };
