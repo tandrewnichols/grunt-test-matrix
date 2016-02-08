@@ -49,7 +49,7 @@ Suppress logging. Default false.
 
 #### global
 
-Prefix the beginning of the command with the global npm binary path. Default true. Note that `grunt` is added to the command you pass in, so changing this to `false` will probably make grunt explode, unless you have a local copy of grunt in your root directory.
+Prefix the beginning of the command with the global npm binary path. Default true. Set to `false` to use a local copy of grunt (i.e. `./node_modules/.bin/grunt`).
 
 #### install
 

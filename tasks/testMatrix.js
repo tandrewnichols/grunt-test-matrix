@@ -7,10 +7,11 @@ module.exports = function(grunt) {
     var done = this.async();
     var options = this.options({ quiet: false, install: 'latest', global: true });
     var task = this.data.task;
+    var gruntCommand = options.global ? 'grunt' : './node_modules/.bin/grunt';
     if (typeof task === 'string') {
-      task = 'grunt ' + task;
+      task = gruntCommand + ' ' + task;
     } else {
-      task.unshift('grunt');
+      task.unshift(gruntCommand);
     }
     yaml(function(err, travis) {
       if (err) {

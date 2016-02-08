@@ -58,6 +58,22 @@ describe 'testMatrix', ->
       versions: ['4', '5']
     , @done).should.be.true()
 
+  context 'global false', ->
+    Given -> @context.options = (o) ->
+      o.global = false
+      return o
+    Given -> @yaml.callsArgWith 0, null,
+      node_js: ['0.10', '0.12', 'iojs-v1', 'iojs-v2', '4']
+    Given -> @context.data =
+      task: ['foo', 'bar']
+    When -> @subject @grunt
+    And -> @grunt.registerMultiTask.getCall(0).args[2].apply @context
+    Then -> @n.run.calledWith(['./node_modules/.bin/grunt', 'foo', 'bar'], ['0.10', '0.12', '1', '2', '4'],
+      quiet: false
+      install: 'latest'
+      global: false
+    , @done).should.be.true()
+
   context 'error loading travis yaml', ->
     Given -> @yaml.callsArgWith 0, 'error'
     Given -> @context.data =
