@@ -3,6 +3,7 @@ sudo: false
 before_install:
   - "export CODECLIMATE_REPO_TOKEN=ec387ff8c816220b90d137e1ee7d27f575d313e6dab871f2fb269b275544bb1a"
 install:
+  - "npm install -g npm@latest"
   - "npm install grunt-cli codeclimate-test-reporter -g"
   - "npm install"
 script:
