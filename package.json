@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.1",
-    "n-run": "^1.0.1",
+    "n-run": "^1.0.3",
     "travis-yaml": "^1.0.0"
   },
   "devDependencies": {
