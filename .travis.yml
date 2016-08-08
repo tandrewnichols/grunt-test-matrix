@@ -6,6 +6,7 @@ install:
   - "npm install -g npm@latest"
   - "npm install grunt-cli codeclimate-test-reporter -g"
   - "npm install"
+  - "npm explore grunt-mocha-cov -- npm install mocha@latest"
 script:
   - "grunt ci"
 node_js:
